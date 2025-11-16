@@ -1,0 +1,155 @@
+/* Settings Page */
+.ai-connection-status {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    display: none;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.ai-connection-status .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.ai-connection-status.success {
+    display: block;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-left: 4px solid #28a745;
+    color: #155724;
+}
+
+.ai-connection-status.success .dashicons {
+    color: #28a745;
+}
+
+.ai-connection-status.error {
+    display: block;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-left: 4px solid #dc3545;
+    color: #721c24;
+}
+
+.ai-connection-status.error .dashicons {
+    color: #dc3545;
+}
+
+.ai-connection-status.error strong {
+    font-weight: 600;
+}
+
+.ai-test-connection {
+    margin-left: 10px;
+}
+
+.ai-test-connection.testing {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.ai-delete-api-key {
+    margin-left: 10px;
+    background-color: #d63638;
+    border-color: #d63638;
+    color: #fff;
+}
+
+.ai-delete-api-key:hover,
+.ai-delete-api-key:focus {
+    background-color: #b32d2e;
+    border-color: #b32d2e;
+    color: #fff;
+}
+
+.ai-delete-api-key:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Media Metabox */
+.ai-image-tagger-metabox {
+    padding: 12px;
+}
+
+.ai-metadata-display h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.ai-metadata-content {
+    background: #f6f7f7;
+    padding: 12px;
+    border-radius: 3px;
+    margin: 12px 0;
+}
+
+.ai-metadata-content p {
+    margin: 8px 0;
+}
+
+.ai-actions {
+    margin-top: 12px;
+}
+
+.ai-processing-status {
+    padding: 12px;
+    background: #f0f6fc;
+    border-left: 4px solid #0073aa;
+    margin: 12px 0;
+}
+
+.ai-processing-status .spinner {
+    float: none;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+}
+
+.ai-error-message {
+    padding: 12px;
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    margin: 12px 0;
+}
+
+.ai-error-message .error {
+    margin: 0;
+    color: #721c24;
+}
+
+/* Media Library */
+.ai-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.ai-status-badge .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.ai-status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.ai-status-pending {
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.ai-status-failed {
+    background: #f8d7da;
+    color: #721c24;
+}

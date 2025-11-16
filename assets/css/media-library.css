@@ -1,0 +1,17 @@
+/* Media Library specific styles */
+.media .ai-status-badge {
+    white-space: nowrap;
+}
+
+.media-icon .ai-status-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    padding: 2px 6px;
+}
+
+/* List view */
+.wp-list-table .column-ai_status {
+    width: 120px;
+}

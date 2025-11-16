@@ -1,0 +1,537 @@
+/**
+ * AI Image Tagger - Brand Styles
+ * Modern, professional branding with AI/tech aesthetic
+ */
+
+:root {
+    /* Primary Colors - Deep Blue */
+    --ait-primary: #1E40AF;
+    --ait-primary-dark: #1E3A8A;
+    --ait-primary-light: #3B82F6;
+    --ait-primary-rgb: 30, 64, 175;
+
+    /* Secondary Colors - Amber */
+    --ait-secondary: #F59E0B;
+    --ait-secondary-dark: #D97706;
+    --ait-secondary-light: #FBBF24;
+    --ait-secondary-rgb: 245, 158, 11;
+
+    /* Accent Colors - Purple */
+    --ait-accent: #8B5CF6;
+    --ait-accent-dark: #7C3AED;
+    --ait-accent-light: #A78BFA;
+
+    /* Status Colors */
+    --ait-success: #10B981;
+    --ait-success-light: #D1FAE5;
+    --ait-info: #3B82F6;
+    --ait-info-light: #DBEAFE;
+    --ait-warning: #F59E0B;
+    --ait-warning-light: #FEF3C7;
+    --ait-error: #DC2626;
+    --ait-error-light: #FEE2E2;
+
+    /* Neutral Colors */
+    --ait-text: #1F2937;
+    --ait-text-light: #6B7280;
+    --ait-text-muted: #9CA3AF;
+    --ait-border: #E5E7EB;
+    --ait-border-light: #F3F4F6;
+    --ait-bg: #F9FAFB;
+    --ait-bg-white: #FFFFFF;
+
+    /* Shadows */
+    --ait-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ait-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --ait-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --ait-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Border Radius */
+    --ait-radius-sm: 4px;
+    --ait-radius: 6px;
+    --ait-radius-md: 8px;
+    --ait-radius-lg: 12px;
+
+    /* Transitions */
+    --ait-transition: all 0.2s ease-in-out;
+}
+
+/* ========================================
+   PLUGIN HEADER
+   ======================================== */
+
+.ait-header {
+    background: linear-gradient(135deg, var(--ait-primary) 0%, var(--ait-accent) 100%);
+    color: var(--ait-bg-white);
+    padding: 24px 32px;
+    margin: -10px -20px 20px -22px;
+    box-shadow: var(--ait-shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.ait-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ait-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ait-header-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ait-header-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ait-header-title .fs-notice {
+    display: none !important;
+}
+
+.ait-header-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--ait-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.ait-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ait-bg-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ait-header-subtitle {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.ait-header-badge {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 6px 12px;
+    border-radius: var(--ait-radius);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   BUTTON STYLES
+   ======================================== */
+
+/* Primary Button */
+.button.ait-button-primary,
+.button-primary.ait-button-primary {
+    background: var(--ait-primary);
+    border-color: var(--ait-primary-dark);
+    color: var(--ait-bg-white);
+    font-weight: 600;
+    text-shadow: none;
+    box-shadow: var(--ait-shadow-sm);
+    transition: var(--ait-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.button.ait-button-primary:hover,
+.button-primary.ait-button-primary:hover {
+    background: var(--ait-primary-dark);
+    border-color: var(--ait-primary-dark);
+    color: var(--ait-bg-white);
+    box-shadow: var(--ait-shadow-md);
+    transform: translateY(-1px);
+}
+
+.button.ait-button-primary:active,
+.button-primary.ait-button-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--ait-shadow-sm);
+}
+
+.button.ait-button-primary:focus,
+.button-primary.ait-button-primary:focus {
+    background: var(--ait-primary-dark);
+    border-color: var(--ait-primary-dark);
+    color: var(--ait-bg-white);
+    box-shadow: 0 0 0 3px rgba(var(--ait-primary-rgb), 0.2);
+}
+
+/* Secondary Button */
+.button.ait-button-secondary {
+    background: var(--ait-bg-white);
+    border: 2px solid var(--ait-primary);
+    color: var(--ait-primary);
+    font-weight: 600;
+    box-shadow: var(--ait-shadow-sm);
+    transition: var(--ait-transition);
+}
+
+.button.ait-button-secondary:hover {
+    background: var(--ait-primary);
+    border-color: var(--ait-primary);
+    color: var(--ait-bg-white);
+    box-shadow: var(--ait-shadow-md);
+    transform: translateY(-1px);
+}
+
+.button.ait-button-secondary:active {
+    transform: translateY(0);
+    box-shadow: var(--ait-shadow-sm);
+}
+
+.button.ait-button-secondary:focus {
+    border-color: var(--ait-primary);
+    box-shadow: 0 0 0 3px rgba(var(--ait-primary-rgb), 0.2);
+}
+
+/* Accent Button */
+.button.ait-button-accent {
+    background: var(--ait-secondary);
+    border-color: var(--ait-secondary-dark);
+    color: var(--ait-bg-white);
+    font-weight: 600;
+    text-shadow: none;
+    box-shadow: var(--ait-shadow-sm);
+    transition: var(--ait-transition);
+}
+
+.button.ait-button-accent:hover {
+    background: var(--ait-secondary-dark);
+    border-color: var(--ait-secondary-dark);
+    color: var(--ait-bg-white);
+    box-shadow: var(--ait-shadow-md);
+    transform: translateY(-1px);
+}
+
+/* Success Button */
+.button.ait-button-success {
+    background: var(--ait-success);
+    border-color: var(--ait-success);
+    color: var(--ait-bg-white);
+    font-weight: 600;
+    text-shadow: none;
+    box-shadow: var(--ait-shadow-sm);
+    transition: var(--ait-transition);
+}
+
+.button.ait-button-success:hover {
+    background: #059669;
+    border-color: #059669;
+    color: var(--ait-bg-white);
+    transform: translateY(-1px);
+}
+
+/* Danger/Error Button */
+.button.ait-button-danger {
+    background: var(--ait-error);
+    border-color: var(--ait-error);
+    color: var(--ait-bg-white);
+    font-weight: 600;
+    text-shadow: none;
+    box-shadow: var(--ait-shadow-sm);
+    transition: var(--ait-transition);
+}
+
+.button.ait-button-danger:hover {
+    background: #DC2626;
+    border-color: #DC2626;
+    color: var(--ait-bg-white);
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   CARD STYLES
+   ======================================== */
+
+.ait-card {
+    background: var(--ait-bg-white);
+    border: 1px solid var(--ait-border);
+    border-radius: var(--ait-radius-md);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--ait-shadow-sm);
+    transition: var(--ait-transition);
+}
+
+.ait-card:hover {
+    box-shadow: var(--ait-shadow);
+}
+
+.ait-card-header {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ait-text);
+    margin: 0 0 12px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ait-border-light);
+}
+
+/* ========================================
+   BADGE STYLES
+   ======================================== */
+
+.ait-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: var(--ait-radius);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.ait-badge-primary {
+    background: rgba(var(--ait-primary-rgb), 0.1);
+    color: var(--ait-primary-dark);
+}
+
+.ait-badge-success {
+    background: var(--ait-success-light);
+    color: #047857;
+}
+
+.ait-badge-warning {
+    background: var(--ait-warning-light);
+    color: #D97706;
+}
+
+.ait-badge-error {
+    background: var(--ait-error-light);
+    color: #DC2626;
+}
+
+.ait-badge-info {
+    background: var(--ait-info-light);
+    color: #1D4ED8;
+}
+
+/* ========================================
+   NOTICE ENHANCEMENTS
+   ======================================== */
+
+.ait-notice {
+    border-left-width: 4px;
+    border-radius: var(--ait-radius);
+    box-shadow: var(--ait-shadow-sm);
+}
+
+.ait-notice.notice-info {
+    border-left-color: var(--ait-info);
+    background: var(--ait-info-light);
+}
+
+.ait-notice.notice-success {
+    border-left-color: var(--ait-success);
+    background: var(--ait-success-light);
+}
+
+.ait-notice.notice-warning {
+    border-left-color: var(--ait-warning);
+    background: var(--ait-warning-light);
+}
+
+.ait-notice.notice-error {
+    border-left-color: var(--ait-error);
+    background: var(--ait-error-light);
+}
+
+/* ========================================
+   DISCLOSURE BOX
+   ======================================== */
+
+.ait-disclosure-box {
+    background: var(--ait-info-light);
+    border: 1px solid var(--ait-info);
+    border-left-width: 4px;
+    border-radius: var(--ait-radius-md);
+    margin: 24px 0;
+    box-shadow: var(--ait-shadow-sm);
+}
+
+.ait-disclosure-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    color: var(--ait-info);
+    font-size: 15px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+
+.ait-disclosure-header:hover {
+    background-color: rgba(0, 115, 170, 0.05);
+}
+
+.ait-disclosure-header .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.ait-disclosure-toggle {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+
+.ait-disclosure-toggle.ait-disclosure-open {
+    transform: rotate(180deg);
+}
+
+.ait-disclosure-content {
+    padding: 0 20px 16px;
+}
+
+.ait-disclosure-content p {
+    margin: 0 0 12px 0;
+    color: var(--ait-text);
+    line-height: 1.6;
+}
+
+.ait-disclosure-content ul {
+    list-style: disc;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.ait-disclosure-content ul li {
+    margin: 6px 0;
+    color: var(--ait-text);
+}
+
+.ait-disclosure-content a {
+    color: var(--ait-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ait-disclosure-content a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   FORM ENHANCEMENTS
+   ======================================== */
+
+.api-key-row {
+    transition: var(--ait-transition);
+}
+
+.ait-form-section {
+    background: var(--ait-bg-white);
+    border: 1px solid var(--ait-border);
+    border-radius: var(--ait-radius-md);
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: var(--ait-shadow-sm);
+}
+
+.ait-form-section h2 {
+    margin-top: 0;
+    color: var(--ait-primary);
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ait-form-section h2::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--ait-primary);
+    border-radius: 2px;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.ait-text-primary {
+    color: var(--ait-primary);
+}
+
+.ait-text-secondary {
+    color: var(--ait-secondary);
+}
+
+.ait-text-muted {
+    color: var(--ait-text-muted);
+}
+
+.ait-bg-gradient {
+    background: linear-gradient(135deg, var(--ait-primary) 0%, var(--ait-accent) 100%);
+}
+
+.ait-divider {
+    height: 1px;
+    background: var(--ait-border);
+    margin: 20px 0;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media screen and (max-width: 782px) {
+    .ait-header {
+        padding: 16px 20px;
+        margin: -10px -10px 20px -10px;
+    }
+
+    .ait-header h1 {
+        font-size: 22px;
+    }
+
+    .ait-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .ait-header-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
