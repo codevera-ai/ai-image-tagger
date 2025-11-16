@@ -45,7 +45,8 @@ class GeminiProvider extends AbstractProvider {
     protected function buildRequest(string $imagePath): array {
         $imageData = $this->encodeImage($imagePath);
         $mimeType = $this->getMimeType($imagePath);
-        $basePrompt = $this->settings->get('default_prompt') ?: $this->getDefaultPrompt();
+        $basePrompt = $this->buildPromptFromSettings();
+        $basePrompt = $this->replacePlaceholders($basePrompt);
         $languageInstruction = $this->getLanguageInstruction();
         $prompt = $languageInstruction . $basePrompt;
 
@@ -180,14 +181,36 @@ class GeminiProvider extends AbstractProvider {
         return true;
     }
 
-    private function getDefaultPrompt(): string {
-        return 'Analyse this image and provide a JSON response with the following fields:
-- title: A concise and descriptive title
-- description: A detailed description of the image
-- alt_text: Alternative text for accessibility (concise, descriptive, max 125 characters)
-- caption: A short caption suitable for display below the image
-- tags: 5-10 relevant keywords
+    private function buildPromptFromSettings(): string {
+        $enableTitle = $this->settings->get('enable_title', true);
+        $enableDescription = $this->settings->get('enable_description', true);
+        $enableCaption = $this->settings->get('enable_caption', true);
 
-Respond with valid JSON only.';
+        $prompt = 'Analyse this image and provide metadata in JSON format with exactly these fields:' . "\n";
+
+        if ($enableTitle) {
+            $prompt .= "- title: A concise and descriptive title (max {title_word_length} words)\n";
+        } else {
+            $prompt .= "- title: Leave as empty string\n";
+        }
+
+        if ($enableDescription) {
+            $prompt .= "- description: A detailed description of the image (max {description_word_length} words)\n";
+        } else {
+            $prompt .= "- description: Leave as empty string\n";
+        }
+
+        $prompt .= "- alt_text: Alternative text for accessibility (concise, descriptive, max 125 characters)\n";
+
+        if ($enableCaption) {
+            $prompt .= "- caption: A short caption suitable for display below the image (max {caption_word_length} words)\n";
+        } else {
+            $prompt .= "- caption: Leave as empty string\n";
+        }
+
+        $prompt .= "- tags: 5-10 relevant keywords (array)\n\n";
+        $prompt .= "Respond with valid JSON only.";
+
+        return $prompt;
     }
 }

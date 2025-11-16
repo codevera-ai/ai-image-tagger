@@ -53,7 +53,7 @@ class Plugin {
         // Initialize encryption and settings first
         $encryption = new EncryptionService();
         $settingsRepo = new SettingsRepository($encryption);
-        $metadataRepo = new MetadataRepository();
+        $metadataRepo = new MetadataRepository($settingsRepo);
         $queueRepo = new QueueRepository();
         
         // Initialize provider factory

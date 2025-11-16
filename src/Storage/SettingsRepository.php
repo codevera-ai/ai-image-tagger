@@ -71,6 +71,14 @@ class SettingsRepository {
             'retry_delay' => 300,
             'enable_logging' => true,
             'log_retention_days' => 30,
+            // Field enable/disable settings
+            'enable_title' => true,
+            'enable_description' => true,
+            'enable_caption' => true,
+            // Word length settings
+            'title_word_length' => 10,
+            'description_word_length' => 50,
+            'caption_word_length' => 20,
         ];
     }
 }

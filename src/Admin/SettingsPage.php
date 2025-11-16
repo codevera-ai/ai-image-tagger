@@ -165,6 +165,22 @@ class SettingsPage {
             $sanitized['batch_size'] = absint($input['batch_size']);
         }
 
+        // Field enable/disable checkboxes
+        $sanitized['enable_title'] = isset($input['enable_title']) && $input['enable_title'] === '1';
+        $sanitized['enable_description'] = isset($input['enable_description']) && $input['enable_description'] === '1';
+        $sanitized['enable_caption'] = isset($input['enable_caption']) && $input['enable_caption'] === '1';
+
+        // Word length settings
+        if (isset($input['title_word_length'])) {
+            $sanitized['title_word_length'] = max(1, absint($input['title_word_length']));
+        }
+        if (isset($input['description_word_length'])) {
+            $sanitized['description_word_length'] = max(1, absint($input['description_word_length']));
+        }
+        if (isset($input['caption_word_length'])) {
+            $sanitized['caption_word_length'] = max(1, absint($input['caption_word_length']));
+        }
+
         // Merge with existing settings
         $existing = get_option('ai_image_tagger_settings', []);
         return array_merge($existing, $sanitized);

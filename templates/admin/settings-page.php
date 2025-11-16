@@ -237,6 +237,102 @@ $badge_text = 'v' . AI_IMAGE_TAGGER_VERSION;
         </table>
         </div>
 
+        <div class="ait-form-section">
+            <h2><?php esc_html_e('Content Generation Settings', 'ai-image-tagger'); ?></h2>
+
+            <table class="form-table">
+                <tr>
+                    <th scope="row">
+                        <?php esc_html_e('Fields to generate', 'ai-image-tagger'); ?>
+                    </th>
+                    <td>
+                        <fieldset>
+                            <label>
+                                <input type="checkbox"
+                                       name="ai_image_tagger_settings[enable_title]"
+                                       value="1"
+                                       <?php checked($settings['enable_title'] ?? true, 1); ?>>
+                                <?php esc_html_e('Generate title', 'ai-image-tagger'); ?>
+                            </label>
+                            <br>
+                            <label>
+                                <input type="checkbox"
+                                       name="ai_image_tagger_settings[enable_description]"
+                                       value="1"
+                                       <?php checked($settings['enable_description'] ?? true, 1); ?>>
+                                <?php esc_html_e('Generate description', 'ai-image-tagger'); ?>
+                            </label>
+                            <br>
+                            <label>
+                                <input type="checkbox"
+                                       name="ai_image_tagger_settings[enable_caption]"
+                                       value="1"
+                                       <?php checked($settings['enable_caption'] ?? true, 1); ?>>
+                                <?php esc_html_e('Generate caption', 'ai-image-tagger'); ?>
+                            </label>
+                        </fieldset>
+                        <p class="description">
+                            <?php esc_html_e('Select which fields should be populated by the AI. Alt text and tags are always generated.', 'ai-image-tagger'); ?>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">
+                        <label for="title_word_length"><?php esc_html_e('Title word length', 'ai-image-tagger'); ?></label>
+                    </th>
+                    <td>
+                        <input type="number"
+                               name="ai_image_tagger_settings[title_word_length]"
+                               id="title_word_length"
+                               value="<?php echo esc_attr($settings['title_word_length'] ?? 10); ?>"
+                               min="1"
+                               max="100"
+                               class="small-text">
+                        <p class="description">
+                            <?php esc_html_e('Maximum number of words for the title', 'ai-image-tagger'); ?>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">
+                        <label for="description_word_length"><?php esc_html_e('Description word length', 'ai-image-tagger'); ?></label>
+                    </th>
+                    <td>
+                        <input type="number"
+                               name="ai_image_tagger_settings[description_word_length]"
+                               id="description_word_length"
+                               value="<?php echo esc_attr($settings['description_word_length'] ?? 50); ?>"
+                               min="1"
+                               max="500"
+                               class="small-text">
+                        <p class="description">
+                            <?php esc_html_e('Maximum number of words for the description', 'ai-image-tagger'); ?>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">
+                        <label for="caption_word_length"><?php esc_html_e('Caption word length', 'ai-image-tagger'); ?></label>
+                    </th>
+                    <td>
+                        <input type="number"
+                               name="ai_image_tagger_settings[caption_word_length]"
+                               id="caption_word_length"
+                               value="<?php echo esc_attr($settings['caption_word_length'] ?? 20); ?>"
+                               min="1"
+                               max="100"
+                               class="small-text">
+                        <p class="description">
+                            <?php esc_html_e('Maximum number of words for the caption', 'ai-image-tagger'); ?>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <?php submit_button(__('Save Settings', 'ai-image-tagger'), 'primary ait-button-primary'); ?>
     </form>
 </div>

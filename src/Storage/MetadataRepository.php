@@ -6,14 +6,35 @@ use AIImageTagger\Models\AIMetadata;
 
 class MetadataRepository {
 
+    private ?SettingsRepository $settings;
+
+    public function __construct(?SettingsRepository $settings = null) {
+        $this->settings = $settings;
+    }
+
     public function save(int $attachmentId, AIMetadata $metadata, string $provider): bool {
-        // Update post title, content, and caption
-        wp_update_post([
-            'ID' => $attachmentId,
-            'post_title' => $metadata->getTitle(),
-            'post_content' => $metadata->getDescription(),
-            'post_excerpt' => $metadata->getCaption(),
-        ]);
+        // Check which fields are enabled (default to true if settings not available)
+        $enableTitle = $this->settings ? $this->settings->get('enable_title', true) : true;
+        $enableDescription = $this->settings ? $this->settings->get('enable_description', true) : true;
+        $enableCaption = $this->settings ? $this->settings->get('enable_caption', true) : true;
+
+        // Prepare update data based on enabled fields
+        $updateData = ['ID' => $attachmentId];
+
+        if ($enableTitle) {
+            $updateData['post_title'] = $metadata->getTitle();
+        }
+
+        if ($enableDescription) {
+            $updateData['post_content'] = $metadata->getDescription();
+        }
+
+        if ($enableCaption) {
+            $updateData['post_excerpt'] = $metadata->getCaption();
+        }
+
+        // Update post fields
+        wp_update_post($updateData);
 
         // Save alt text to standard WordPress field
         update_post_meta($attachmentId, '_wp_attachment_image_alt', $metadata->getAltText());
@@ -23,11 +44,23 @@ class MetadataRepository {
         update_post_meta($attachmentId, '_ai_provider', $provider);
         update_post_meta($attachmentId, '_ai_processed_date', current_time('mysql'));
         update_post_meta($attachmentId, '_ai_processing_status', 'completed');
-        update_post_meta($attachmentId, '_ai_title', $metadata->getTitle());
-        update_post_meta($attachmentId, '_ai_description', $metadata->getDescription());
+
+        // Only save custom meta for enabled fields
+        if ($enableTitle) {
+            update_post_meta($attachmentId, '_ai_title', $metadata->getTitle());
+        }
+
+        if ($enableDescription) {
+            update_post_meta($attachmentId, '_ai_description', $metadata->getDescription());
+        }
+
+        if ($enableCaption) {
+            update_post_meta($attachmentId, '_ai_caption', $metadata->getCaption());
+        }
+
+        // Always save tags and alt text
         update_post_meta($attachmentId, '_ai_tags', $metadata->getTags());
         update_post_meta($attachmentId, '_ai_alt_text', $metadata->getAltText());
-        update_post_meta($attachmentId, '_ai_caption', $metadata->getCaption());
         update_post_meta($attachmentId, '_ai_raw_response', wp_json_encode($metadata->toArray()));
 
         if ($metadata->getConfidence() !== null) {

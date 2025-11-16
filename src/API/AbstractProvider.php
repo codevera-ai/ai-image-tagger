@@ -141,6 +141,23 @@ abstract class AbstractProvider implements ProviderInterface {
         return "IMPORTANT: Provide all text fields (title, description, alt_text, caption, tags) in {$language}. ";
     }
 
+    /**
+     * Replace placeholders in prompt with actual values from settings
+     */
+    protected function replacePlaceholders(string $prompt): string {
+        $titleWordLength = $this->settings->get('title_word_length', 10);
+        $descriptionWordLength = $this->settings->get('description_word_length', 50);
+        $captionWordLength = $this->settings->get('caption_word_length', 20);
+
+        $replacements = [
+            '{title_word_length}' => $titleWordLength,
+            '{description_word_length}' => $descriptionWordLength,
+            '{caption_word_length}' => $captionWordLength,
+        ];
+
+        return str_replace(array_keys($replacements), array_values($replacements), $prompt);
+    }
+
     protected function optimizeImage(string $imagePath): string {
         // Resize if needed, return path to optimized image
         $maxDimension = 2048;
