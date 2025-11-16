@@ -39,7 +39,8 @@ class QueueWorker {
             );
 
             if ($result->isSuccess()) {
-                $item->markCompleted();
+                // Delete completed items immediately instead of marking as completed
+                $this->queueRepo->delete($item->getId());
             } else {
                 $item->incrementAttempts();
 
@@ -48,9 +49,9 @@ class QueueWorker {
                 } else {
                     $item->setStatus('pending');
                 }
-            }
 
-            $this->queueRepo->update($item);
+                $this->queueRepo->update($item);
+            }
 
         } catch (\Exception $e) {
             $item->incrementAttempts();

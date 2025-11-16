@@ -6,28 +6,12 @@ if (!defined('ABSPATH')) {
 // Header variables
 $page_title = __('Settings', 'ai-image-tagger');
 $page_subtitle = __('Configure AI providers and processing options', 'ai-image-tagger');
-$badge_text = 'v' . AI_IMAGE_TAGGER_VERSION;
+$badge_text = '';
 ?>
 <div class="wrap">
     <?php include AI_IMAGE_TAGGER_PLUGIN_DIR . 'templates/admin/header.php'; ?>
 
     <?php settings_errors('ai_image_tagger_messages'); ?>
-
-    <div class="ait-disclosure-box">
-        <button type="button" class="ait-disclosure-header" aria-expanded="false">
-            <span class="dashicons dashicons-info"></span>
-            <strong><?php esc_html_e('External Service Disclosure', 'ai-image-tagger'); ?></strong>
-            <span class="dashicons dashicons-arrow-down-alt2 ait-disclosure-toggle"></span>
-        </button>
-        <div class="ait-disclosure-content" style="display: none;">
-            <p><?php esc_html_e('This plugin sends your images to external AI services for analysis. By configuring an API key and enabling image processing, you consent to transmitting your images to the selected AI provider (OpenAI, Anthropic, or Google). Please review the privacy policies:', 'ai-image-tagger'); ?></p>
-            <ul>
-                <li><a href="https://openai.com/policies/privacy-policy" target="_blank"><?php esc_html_e('OpenAI Privacy Policy', 'ai-image-tagger'); ?></a></li>
-                <li><a href="https://www.anthropic.com/legal/privacy" target="_blank"><?php esc_html_e('Anthropic Privacy Policy', 'ai-image-tagger'); ?></a></li>
-                <li><a href="https://policies.google.com/privacy" target="_blank"><?php esc_html_e('Google Privacy Policy', 'ai-image-tagger'); ?></a></li>
-            </ul>
-        </div>
-    </div>
 
     <form action="options.php" method="post">
         <?php
@@ -335,4 +319,20 @@ $badge_text = 'v' . AI_IMAGE_TAGGER_VERSION;
 
         <?php submit_button(__('Save Settings', 'ai-image-tagger'), 'primary ait-button-primary'); ?>
     </form>
+
+    <div class="ait-disclosure-box">
+        <button type="button" class="ait-disclosure-header" aria-expanded="false">
+            <span class="dashicons dashicons-info"></span>
+            <strong><?php esc_html_e('External Service Disclosure', 'ai-image-tagger'); ?></strong>
+            <span class="dashicons dashicons-arrow-down-alt2 ait-disclosure-toggle"></span>
+        </button>
+        <div class="ait-disclosure-content" style="display: none;">
+            <p><?php esc_html_e('This plugin sends your images to external AI services for analysis. By configuring an API key and enabling image processing, you consent to transmitting your images to the selected AI provider (OpenAI, Anthropic, or Google). Please review the privacy policies:', 'ai-image-tagger'); ?></p>
+            <ul>
+                <li><a href="https://openai.com/policies/privacy-policy" target="_blank"><?php esc_html_e('OpenAI Privacy Policy', 'ai-image-tagger'); ?></a></li>
+                <li><a href="https://www.anthropic.com/legal/privacy" target="_blank"><?php esc_html_e('Anthropic Privacy Policy', 'ai-image-tagger'); ?></a></li>
+                <li><a href="https://policies.google.com/privacy" target="_blank"><?php esc_html_e('Google Privacy Policy', 'ai-image-tagger'); ?></a></li>
+            </ul>
+        </div>
+    </div>
 </div>

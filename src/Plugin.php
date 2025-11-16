@@ -31,6 +31,7 @@ class Plugin {
     private QueueController $queueController;
     private JobScheduler $jobScheduler;
     private SearchService $searchService;
+    private QueueRepository $queueRepository;
 
     private function __construct() {
         $this->loadDependencies();
@@ -54,7 +55,7 @@ class Plugin {
         $encryption = new EncryptionService();
         $settingsRepo = new SettingsRepository($encryption);
         $metadataRepo = new MetadataRepository($settingsRepo);
-        $queueRepo = new QueueRepository();
+        $this->queueRepository = new QueueRepository();
         
         // Initialize provider factory
         $providerFactory = new ProviderFactory($settingsRepo, $encryption);
@@ -64,13 +65,13 @@ class Plugin {
         $processor = new ProcessingService($providerFactory, $metadataRepo, $validator);
         
         // Initialize queue
-        $queueManager = new QueueManager($queueRepo, $settingsRepo);
-        $queueWorker = new QueueWorker($queueRepo, $processor);
-        
+        $queueManager = new QueueManager($this->queueRepository, $settingsRepo);
+        $queueWorker = new QueueWorker($this->queueRepository, $processor);
+
         // Initialize controllers
         $this->mediaController = new MediaController($queueManager, $processor, $settingsRepo);
         $this->settingsController = new SettingsController($settingsRepo, $providerFactory);
-        $this->queueController = new QueueController($queueManager, $queueRepo);
+        $this->queueController = new QueueController($queueManager, $this->queueRepository);
         $this->jobScheduler = new JobScheduler($queueWorker, $settingsRepo);
         $this->searchService = new SearchService();
 
@@ -83,7 +84,7 @@ class Plugin {
         if (is_admin()) {
             new SettingsPage();
             new MediaMetabox();
-            new MediaLibraryColumns();
+            new MediaLibraryColumns($this->queueRepository);
             new BulkActions();
         }
 
@@ -240,19 +241,8 @@ class Plugin {
         global $wpdb;
         $table = $wpdb->prefix . 'ai_processing_queue';
 
-        // Delete completed items older than 7 days
-        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-        $wpdb->query(
-            $wpdb->prepare(
-                "DELETE FROM {$table}
-                 WHERE status = %s
-                 AND processed_at < DATE_SUB(NOW(), INTERVAL 7 DAY)",
-                'completed'
-            )
-        );
-        // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-
-        // Delete failed items older than 30 days
+        // Completed items are now deleted immediately upon successful processing
+        // Only clean up failed items older than 30 days
         // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $wpdb->query(
             $wpdb->prepare(
